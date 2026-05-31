@@ -30,7 +30,6 @@ Claude Novel Skills 是一组为 [Claude Code](https://claude.ai/code) 设计的
 | 吸引力优化 | 🔧 | `/novel-optimization` | 针对亲密度、幽默感、惊喜感等维度优化 |
 | 去 AI 味 | 🔧 | `/novel-deslop` | 6 门扫描 + 3 遍修复，消除 AI 写作痕迹 |
 | 一致性检查 | 🔧 | `/novel-consistency` | 5 维连续性检查：人物/伏笔/时间线/关系/世界观 |
-| 写作技法分析 | 🎯 | `/novel-analysis` | 12 维度深度分析已有作品 |
 | 深度学习 | 🎯 | `/novel-learn` | 阅读完整小说，12 维分析后输出扩展技法到 extensions/ |
 | 逆向导入 | 🎯 | `/novel-import` | 从已有小说文本反向构建项目目录结构 |
 | 市场调研 | 🎯 | `/novel-scan` | 爬取主流网文平台榜单数据，输出选题决策报告 |
@@ -96,7 +95,6 @@ cd /path/to/your/novel-project
 
 ```
 claude-novel-skills/
-├── novel-analysis/          # 写作技法分析
 ├── novel-batch/             # 批量创作
 ├── novel-chapter/           # 正文写作
 ├── novel-chapter-outline/   # 章节大纲
@@ -169,7 +167,6 @@ Claude Novel Skills is a comprehensive set of [Claude Code](https://claude.ai/co
 | Deslop | `/novel-deslop` | 6-gate scan + 3-pass repair to remove AI writing artifacts |
 | Consistency | `/novel-consistency` | 5-dimension continuity: character/foreshadowing/timeline/relationship/world |
 | Worldbuilding | `/novel-worldbuilding` | 8-section standard world-setting document |
-| Analysis | `/novel-analysis` | 12-dimension deep analysis of existing novels |
 | Learn | `/novel-learn` | Read full novels, analyze across 12 dimensions, output extensions to technique library |
 | Import | `/novel-import` | Reverse-engineer existing novel text into standard project structure |
 | Market Scan | `/novel-scan` | Scrape ranking data from Chinese web novel platforms |

@@ -420,6 +420,6 @@ Claude：
 
 ---
 
-*整合自 novel-analysis 技能的12维度分析框架*
+*12维度分析框架（原 novel-analysis 已整合至此技能）*
 *基于《逼我重生是吧》分析流程设计*
 *技能整理：Claude*
