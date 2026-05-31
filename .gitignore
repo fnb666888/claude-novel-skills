@@ -1,0 +1,30 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Node modules (for scan scripts)
+node_modules/
+package-lock.json
+
+# Novel project files (user data)
+设定/
+大纲/
+正文/
+追踪/
+世界书/
+素材/
+
+# Claude Code local settings
+.claude/
+.novel-deployed
+
+# Logs
+*.log

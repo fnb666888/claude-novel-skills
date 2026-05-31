@@ -1,0 +1,54 @@
+# {项目名} — 小说创作工具集
+
+## Skill 路由表
+
+| 命令 | Skill | 说明 |
+|------|-------|------|
+| `/novel-inspiration`、`/灵感` | novel-inspiration | 灵感迭代生成（9.0+ 分达标） |
+| `/novel-outline`、`/大纲` | novel-outline | 整体大纲迭代生成 |
+| `/novel-chapter-outline`、`/章纲` | novel-chapter-outline | 章节大纲批量生成（10 章/批） |
+| `/novel-chapter`、`/正文` | novel-chapter | 正文迭代生成（9.0+ 分达标） |
+| `/novel-evaluation`、`/评价` | novel-evaluation | 三层层级量化评价 |
+| `/novel-optimization`、`/优化` | novel-optimization | 吸引力定向优化 |
+| `/novel-worldbuilding`、`/世界观` | novel-worldbuilding | 世界观管理（8 部分标准文档） |
+| `/novel-consistency`、`/一致性` | novel-consistency | 连续性检查（5 维度） |
+| `/novel-batch`、`/批量` | novel-batch | 批量创作（断点续写） |
+| `/novel-learn`、`/学习` | novel-learn | 从新小说提取技法（自我进化） |
+| `/novel-analysis`、`/拆文` | novel-analysis | 写作技法拆解（12 维度） |
+| `/novel-deslop`、`/去AI味` | novel-deslop | 去除 AI 写作痕迹（6 Gate） |
+| `/novel-scan`、`/扫榜` | novel-scan | 市场调研（数据驱动选题） |
+| `/novel-import`、`/导入` | novel-import | 逆向导入已有小说 |
+| `/novel-setup`、`/准备写小说` | novel-setup | 环境部署（hooks/rules/agents） |
+| `/novel-writing`、`/写作技法` | novel-writing | 核心技法库（角色/情节/正文） |
+| `/novel`、`/小说` | novel | 工具箱路由 · 模糊意图自动分发 |
+
+## 文件结构
+
+- `灵感/` — 灵感文件（inspiration_*.md）
+- `大纲/` — 整体大纲、章节大纲
+- `正文/` — 正文章节（chapter_*.md）
+- `设定/` — 世界观、角色设定
+- `追踪/` — 上下文.md（写作上下文）、伏笔.md、进度.md
+- `拆文库/` — 拆文分析结果
+- `优化/` — 优化文件（opt_*.md）
+- `评价/` — 评价文件（eval_*.md）
+
+## 协作规则
+
+Agent 间的协调关系由各 Agent 定义文件的职责边界描述。
+- `novel-architect`：大纲/世界观/结构设计
+- `novel-writer`：正文写作 + 去 AI 味
+- `novel-character`：角色设计/对话风格
+- `novel-checker`：一致性检查（只读）
+- `novel-explorer`：状态查询（只读）
+
+## Compact 后恢复上下文
+
+此部分在 compact 后自动生效。CLAUDE.md 在每次 compact 后会被重新加载。
+写作中的关键上下文：
+1. 当前写作项目名称和进度
+2. 最近讨论的角色设定变更
+3. 未完成的伏笔列表
+4. 当前章节的情绪/节奏目标
+
+如果存在 追踪/上下文.md，compact 后首先读取恢复上下文。
