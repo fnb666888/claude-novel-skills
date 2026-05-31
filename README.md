@@ -26,15 +26,13 @@ Claude Novel Skills 是一组为 [Claude Code](https://claude.ai/code) 设计的
 │  novel-inspiration → novel-outline → novel-chapter       │
 │  novel-quality(评分优化)  novel-deslop(去AI味)            │
 ├─────────────────────────────────────────────────────────┤
-│                    📁 管理 Management                     │
-│  novel-manage  ← 文件组织 + 世界观 + 一致性 + 进度 + 备份  │
-├─────────────────────────────────────────────────────────┤
-│                    🔧 共享基础                            │
-│  novel-writing(技法库)  novel-setup(基础设施)              │
+│                    🔧 共享基础 + 自动管理                 │
+│  novel-setup(部署+管理)  novel-writing(技法库)            │
+│  novel-supervisor(自动审查)                               │
 └─────────────────────────────────────────────────────────┘
 ```
 
-### 技能一览（9 个）
+### 技能一览（8 个）
 
 #### 📚 学习支柱
 | 技能 | 命令 | 说明 |
@@ -50,16 +48,23 @@ Claude Novel Skills 是一组为 [Claude Code](https://claude.ai/code) 设计的
 | 评分优化 | `/novel-quality` | 三量表评分 + 靶向优化 + 读者模拟 |
 | 去 AI 味 | `/novel-deslop` | 6 Gate 扫描 + 3 遍修复，消除 AI 写作痕迹 |
 
-#### 📁 管理支柱
+#### 🔧 共享基础 + 自动管理
 | 技能 | 命令 | 说明 |
 |------|------|------|
-| 项目管理 | `/novel-manage` | 世界观管理 + 一致性检查(5维) + 伏笔追踪 + 进度监控 + 备份 |
-
-#### 🔧 共享基础
-| 技能 | 命令 | 说明 |
-|------|------|------|
+| 部署+管理 | `/novel-setup` | **基础设施部署 + 项目自动管理**（世界观/一致性/伏笔/进度/备份） |
 | 写作技法库 | `/novel-writing` | 核心技法：A-人物 / B-情节 / C-正文 / D-反面教材 |
-| 环境部署 | `/novel-setup` | 一键部署 hooks、rules、agents 到小说项目 |
+
+### 自动管理系统
+
+系统通过 **PostToolUse hook + novel-supervisor agent** 自动审查所有写作产出，无需手动调用。
+
+```
+Writer 产出内容 → hook 检测 → supervisor 审查 → 反馈生成 → 下一章读取反馈
+```
+
+- 每当 `正文/` 或 `设定/` 文件被修改，自动触发一致性检查
+- 自动更新追踪文件（进度/伏笔/时间线）
+- 自动生成写作反馈（`追踪/写作反馈.md`）
 
 ### 快速开始
 
@@ -82,9 +87,9 @@ cd /path/to/your/novel-project
 `/novel-setup` 会自动：
 - 创建标准目录结构（灵感/大纲/设定/正文/追踪/素材）
 - 部署 CLAUDE.md 项目配置（三支柱路由表）
-- 安装 hooks（会话开始/结束、提交检查、压缩恢复）
-- 安装 rules（格式/叙事/一致性/管理规范）
-- 配置 agents（架构师/写手/角色设计师/检查员/学习分析师）
+- 安装 hooks（会话开始/结束、提交检查、内容审查、压缩恢复）
+- 安装 rules（格式/叙事/管理规范）
+- 配置 agents（架构师/写手/角色设计师/检查员/监督员/学习分析师）
 
 #### 创作流程
 
@@ -95,9 +100,9 @@ cd /path/to/your/novel-project
   ↓
 /novel-outline             # 3. 生成全书大纲 + 章节大纲
   ↓
-/novel-chapter --batch     # 4. 批量创作正文（自动评分+去AI味）
+/novel-chapter --batch     # 4. 批量创作正文（自动触发审查+反馈）
   ↓
-/novel-manage 检查          # 5. 一致性检查 + 进度追踪
+/novel-setup 检查          # 5. 手动一致性检查（可选，通常自动执行）
 ```
 
 ### 目录结构
@@ -111,14 +116,13 @@ claude-novel-skills/
 ├── novel-learn/             # 学习入口（市场调研 + 小说分析 + 导入）
 │   ├── references/          # 趋势分析 & 结构映射参考
 │   └── scripts/             # 各平台榜单爬虫脚本
-├── novel-manage/            # 项目管理（世界观 + 一致性 + 伏笔 + 进度）
 ├── novel-outline/           # 大纲生成（全书 + 章节，两阶段）
 ├── novel-quality/           # 评分与优化（三量表 + 靶向优化）
-├── novel-setup/             # 环境部署
+├── novel-setup/             # 部署 + 项目自动管理
 │   └── references/templates/
-│       ├── agents/          # 5 个专业 agent 定义
-│       ├── hooks/           # 5 个 hook 脚本 + 2 个库文件
-│       ├── rules/           # 4 个规则文件
+│       ├── agents/          # 6 个专业 agent 定义
+│       ├── hooks/           # 6 个 hook 脚本 + 2 个库文件
+│       ├── rules/           # 3 个规则文件
 │       ├── CLAUDE.md.tmpl   # 项目配置模板
 │       └── settings-hooks.json
 └── novel-writing/           # 核心写作技法库
@@ -128,14 +132,15 @@ claude-novel-skills/
 
 ### Agent 协作体系
 
-部署后，项目中会配置 5 个专业 Agent：
+部署后，项目中会配置 6 个专业 Agent：
 
 | Agent | 职责 | 模型 | 归属支柱 |
 |-------|------|------|----------|
-| `novel-architect` | 结构架构师：世界观、大纲、伏笔网络 | opus | 管理+写作 |
+| `novel-architect` | 结构架构师：世界观、大纲、伏笔网络 | opus | 写作 |
 | `novel-writer` | 文字写手：正文写作、情绪执行 | sonnet | 写作 |
 | `novel-character` | 角色设计师：人物创建、对话风格 | sonnet | 写作 |
 | `novel-checker` | 一致性检查员：5 维连续性检查（只读） | haiku | 管理 |
+| `novel-supervisor` | **自动管理者**：审查 + 追踪 + 反馈（自动触发） | sonnet | 管理 |
 | `novel-learner` | 学习分析师：市场调研、小说分析、技法提取 | haiku | 学习 |
 
 ### 平台支持
@@ -156,7 +161,7 @@ claude-novel-skills/
 
 Claude Novel Skills is a comprehensive set of [Claude Code](https://claude.ai/code) slash commands for AI-assisted novel writing, organized around three pillars: **Learning**, **Writing**, and **Management**.
 
-### Skills Overview (9 skills)
+### Skills Overview (8 skills)
 
 | Pillar | Skill | Command | Description |
 |--------|-------|---------|-------------|
@@ -166,9 +171,20 @@ Claude Novel Skills is a comprehensive set of [Claude Code](https://claude.ai/co
 | ✍️ Write | Chapter | `/novel-chapter` | Single chapter (9.0+) / `--batch` mode (8.5+) |
 | ✍️ Write | Quality | `/novel-quality` | 3-scale evaluation + targeted optimization + reader simulation |
 | ✍️ Write | Deslop | `/novel-deslop` | 6-gate scan + 3-pass repair for AI artifact removal |
-| 📁 Manage | Manage | `/novel-manage` | Worldbuilding + consistency (5D) + foreshadowing + progress |
+| 🔧 Base | Setup+Manage | `/novel-setup` | Infrastructure deployment + automatic project management |
 | 🔧 Base | Writing | `/novel-writing` | Core library: A-Character / B-Plot / C-Prose / D-Antipatterns |
-| 🔧 Base | Setup | `/novel-setup` | One-click deployment of hooks, rules, agents |
+
+### Automatic Management
+
+The system automatically reviews all writer output via **PostToolUse hook + novel-supervisor agent**:
+
+```
+Writer produces → hook detects → supervisor reviews → feedback generated → next chapter reads feedback
+```
+
+- Auto-triggers consistency checks when prose or settings files are modified
+- Auto-updates tracking files (progress/foreshadowing/timeline)
+- Auto-generates writing feedback (`追踪/写作反馈.md`)
 
 ### Installation
 
@@ -182,12 +198,11 @@ cp -r novel-* ~/.claude/skills/
 
 ```bash
 cd /path/to/your/novel-project
-/novel-setup              # Deploy project infrastructure
+/novel-setup              # Deploy project infrastructure + enable auto-management
 /novel-learn --调研        # Market research
 /novel-inspiration        # Generate ideas
 /novel-outline            # Create full + chapter outlines
-/novel-chapter --batch    # Generate full book
-/novel-manage 检查         # Consistency check + progress tracking
+/novel-chapter --batch    # Generate full book (auto-triggers review)
 ```
 
 ## License

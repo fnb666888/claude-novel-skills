@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.1.0] - 2026-05-31
+
+### 重构：自动管理系统
+
+将 novel-manage 合并到 novel-setup，实现写作产出的自动审查。
+
+#### 新增
+- **novel-supervisor agent** - 自动管理者，被 PostToolUse hook 触发，负责一致性检查 + 追踪更新 + 反馈生成
+- **post-content-review.sh hook** - PostToolUse hook，检测正文/设定文件变更并触发 supervisor
+- **novel-manager-rule.md** - 合并原 novel-manage-rule + novel-consistency-rule
+
+#### 变更
+- **novel-setup** - 完全重写：基础设施部署 + 项目管理子命令（世界观/检查/伏笔/进度/结构/备份/迁移）
+- **settings-hooks.json** - 新增 PostToolUse hook 注册（Write/Edit 触发）
+- **CLAUDE.md.tmpl** - 更新路由表、协作规则、Agent 列表
+- **session-start.sh** - 增强：伏笔预警、超期警告、反馈状态
+
+#### 删除
+- **novel-manage/** - 功能已合并到 novel-setup
+- novel-manage-rule.md（→ novel-manager-rule.md）
+- novel-consistency-rule.md（→ novel-manager-rule.md）
+
+#### 自动管理机制
+- PostToolUse hook 检测 Write/Edit → 正文/ 或 设定/
+- hook 输出指令 → Claude 调用 novel-supervisor
+- supervisor: 读取世界观 → 调用 checker → 更新追踪 → 生成反馈
+- 60秒防抖锁防止重复触发
+
+---
+
 ## [2.0.0] - 2026-05-31
 
 ### 重构：三支柱架构
