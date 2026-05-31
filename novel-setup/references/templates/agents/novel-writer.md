@@ -7,7 +7,7 @@ description: |
 tools: [Read, Glob, Grep, Write, Edit]
 model: sonnet
 maxTurns: 30
-skills: [novel-writing, novel-deslop, novel-evaluation]
+skills: [novel-writing, novel-deslop, novel-quality]
 memory: project
 ---
 

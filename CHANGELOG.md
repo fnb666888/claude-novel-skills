@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.0.0] - 2026-05-31
+
+### 重构：三支柱架构
+
+围绕**学习、写作、管理**三大支柱重组项目，15 个 skill 合并精简为 9 个。
+
+#### 新增
+- **novel-quality** - 合并原 novel-evaluation + novel-optimization，统一评分三量表 + 靶向优化 + 读者模拟
+- **novel-manage** - 合并原 novel-worldbuilding + novel-consistency，新增伏笔管理、进度追踪、项目维护
+- **novel-learner** agent - 替代原 novel-explorer，职责扩展为市场调研 + 小说分析 + 技法提取
+
+#### 变更
+- **novel-learn** - 吸收 novel-scan（市场调研）+ novel-import（逆向导入），三模式合一
+- **novel-outline** - 吸收 novel-chapter-outline，两阶段设计（全书大纲 + 章节大纲）
+- **novel-chapter** - 吸收 novel-batch，单章 + `--batch` 批量双模式
+- **novel-setup** - 更新 agents(5个)、hooks(5个)、rules(4个)、CLAUDE.md 模板
+- **novel-inspiration** - 更新引用路径（novel-quality、novel-manage）
+- **novel-deslop** - 更新引用路径
+- **novel-writing** - 无变更
+
+#### 删除
+- novel-scan（→ novel-learn）
+- novel-import（→ novel-learn）
+- novel-chapter-outline（→ novel-outline）
+- novel-batch（→ novel-chapter）
+- novel-evaluation（→ novel-quality）
+- novel-optimization（→ novel-quality）
+- novel-worldbuilding（→ novel-manage）
+- novel-consistency（→ novel-manage）
+
+#### 基础设施变更
+- Agent: novel-explorer → novel-learner
+- Hook: detect-novel-gaps.sh 合并到 session-start.sh
+- Rule: novel-outline.md 合并到 novel-format.md
+- Rule: 新增 novel-manage-rule.md
+
+---
+
 ## [1.0.0] - 2026-05-31
 
 ### Added

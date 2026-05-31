@@ -33,10 +33,10 @@ description: |
 
 | Source path | Target path | Merge mode | Validation check |
 |-------------|-------------|------------|------------------|
-| `templates/CLAUDE.md.tmpl` | `CLAUDE.md` | marker/section merge | contains novel skill routing sections |
-| `templates/hooks/` | `.claude/hooks/` | recursive replace | `session-*.sh`, `detect-novel-gaps.sh`, `lib/common.sh`, `lib/sentinel.sh` exist |
+| `templates/CLAUDE.md.tmpl` | `CLAUDE.md` | marker/section merge | contains 3-pillar skill routing sections |
+| `templates/hooks/` | `.claude/hooks/` | recursive replace | `session-*.sh`, `validate-novel-commit.sh`, `lib/common.sh`, `lib/sentinel.sh` exist |
 | `templates/rules/*.md` | `.claude/rules/*.md` | replace | every rule contains `paths` frontmatter |
-| `templates/agents/*.md` | `.claude/agents/*.md` | replace | 5 agent files exist |
+| `templates/agents/*.md` | `.claude/agents/*.md` | replace | 5 agent files exist (architect/writer/character/checker/learner) |
 | `novel-references/*.md` | `.claude/skills/novel-setup/references/novel-references/*.md` | replace | every reference resolves |
 | `templates/settings-hooks.json` | `.claude/settings.local.json` | merge by hook command | hook JSON valid |
 | generated sentinel | `.novel-deployed` | replace | contains version fields |
@@ -145,10 +145,10 @@ hooks 注册合并按 command 字段去重：
 
 | 文件 | 用途 |
 |------|------|
-| references/templates/CLAUDE.md.tmpl | 项目根 CLAUDE.md 模板 |
-| references/templates/hooks/ | 6 个 hook 脚本模板 + lib/ |
+| references/templates/CLAUDE.md.tmpl | 项目根 CLAUDE.md 模板（三支柱路由表） |
+| references/templates/hooks/ | 5 个 hook 脚本 + lib/（2个库文件） |
 | references/templates/rules/ | 4 条 path-scoped 规则模板 |
-| references/templates/agents/ | 5 个 agent 定义模板 |
+| references/templates/agents/ | 5 个 agent 定义模板（architect/writer/character/checker/learner） |
 | references/novel-references/ | Agent 参考资料 |
 | references/templates/settings-hooks.json | hooks 注册 JSON 片段 |
 
@@ -159,5 +159,6 @@ hooks 注册合并按 command 字段去重：
 | 时机 | 跳转到 | 命令 |
 |---|---|---|
 | 部署完成，开始创作 | novel-inspiration / novel-chapter | `/novel-inspiration` 或 `/novel-chapter` |
-| 导入已有小说 | novel-import | `/novel-import` |
-| 市场调研 | novel-scan | `/novel-scan` |
+| 市场调研 / 导入 / 学习 | novel-learn | `/novel-learning` |
+| 评分优化 | novel-quality | `/novel-quality` |
+| 项目管理 | novel-manage | `/novel-manage` |

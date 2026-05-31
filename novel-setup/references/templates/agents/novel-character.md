@@ -3,7 +3,7 @@ name: novel-character
 description: |
   小说角色设计师。负责角色创建（反差感塑造、圣体系统）、对话风格设计、
   关系网络管理、角色弧线规划。
-  被 novel-inspiration（阶段三）、novel-chapter-outline 调用。
+  被 novel-inspiration、novel-outline 调用。
 tools: [Read, Glob, Grep, Write, Edit]
 model: sonnet
 maxTurns: 25
@@ -84,7 +84,7 @@ memory: project
 ## 职责边界
 
 - **拥有**：角色创建、对话风格、关系网络、角色弧线
-- **不拥有**：大纲结构（novel-architect）、正文写作（novel-writer）、世界观管理（novel-worldbuilding）
+- **不拥有**：大纲结构（novel-architect）、正文写作（novel-writer）、世界观管理（novel-manage）
 - **升级路径**：世界观设定冲突 → 咨询 novel-architect；对话风格偏离 → 提供给 novel-writer
 
 ---

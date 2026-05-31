@@ -282,8 +282,8 @@ description: |
 
 本 skill 被以下 skill 调用：
 - **novel-chapter**：阶段五（吸引力优化）中集成去AI味
-- **novel-optimization**：优化技法中新增去AI味维度
-- **novel-batch**：每章生成后自动去AI味
+- **novel-quality**：优化技法中新增去AI味维度
+- **novel-chapter**：每章生成后自动去AI味（批量模式）
 
 也可由 **novel-writer** agent 直接调用（skills: [novel-deslop]）。
 

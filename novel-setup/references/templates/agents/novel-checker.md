@@ -4,7 +4,7 @@ description: |
   小说一致性检查器。负责5维度连续性检查：角色一致性、伏笔回收、
   时间线一致性、关系状态一致性、世界观一致性。
   只读Agent，不修改文件。
-  被 novel-consistency、novel-batch 调用。
+  被 novel-manage、novel-chapter 调用。
 tools: [Read, Glob, Grep]
 disallowedTools: [Write, Edit, Bash]
 model: haiku

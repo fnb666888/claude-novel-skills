@@ -7,11 +7,6 @@
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-start.sh",
             "timeout": 10
-          },
-          {
-            "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/detect-novel-gaps.sh",
-            "timeout": 10
           }
         ]
       }

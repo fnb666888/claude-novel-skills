@@ -25,7 +25,7 @@ if [ ${#NOVELS[@]} -eq 0 ]; then
   exit 0
 fi
 
-# 显示每个小说的进度
+# 显示每个小说的进度 + 缺口检测
 for novel_dir in "${NOVELS[@]}"; do
   novel_name="$(basename "$novel_dir")"
   echo ""
@@ -41,7 +41,7 @@ for novel_dir in "${NOVELS[@]}"; do
   outline_count="$(count_md_files "${novel_dir}/大纲")"
   echo "   大纲：${outline_count} 个文件"
 
-  # 世界观状态
+  # 设定状态
   world_count="$(count_md_files "${novel_dir}/设定")"
   echo "   设定：${world_count} 个文件"
 
@@ -50,6 +50,23 @@ for novel_dir in "${NOVELS[@]}"; do
   if [ -f "$progress_file" ]; then
     current="$(get_current_chapter "$progress_file")"
     echo "   当前：${current}"
+  fi
+
+  # 缺口检测
+  if [ "$text_count" -gt 0 ] && [ "$outline_count" -eq 0 ]; then
+    echo "   ⚠️  有正文但无大纲"
+  fi
+  if [ "$text_count" -gt 5 ] && [ "$world_count" -eq 0 ]; then
+    echo "   ⚠️  有正文但无设定文件"
+  fi
+
+  # 伏笔状态
+  foreshadow_file="${novel_dir}/追踪/伏笔.md"
+  if [ -f "$foreshadow_file" ]; then
+    unresolved=$(grep -c "状态.*未回收" "$foreshadow_file" 2>/dev/null || echo "0")
+    if [ "$unresolved" -gt 20 ]; then
+      echo "   ⚠️  ${unresolved} 个未回收伏笔"
+    fi
   fi
 done
 
