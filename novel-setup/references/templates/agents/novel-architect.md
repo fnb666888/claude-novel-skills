@@ -27,6 +27,8 @@ memory: project
 |---|---|
 | `novel-writing/SKILL.md` 模块B：情节构造 | 大纲设计、伏笔规划、节奏控制时 |
 | `novel-writing/SKILL.md` 模块A：角色塑造 | 角色矩阵设计时 |
+| `novel-writing/references/plot-elements.md` | 情节元素选择（事件类型×事件风格×场景氛围）时 |
+| `novel-writing/references/character-traits.md` | 角色矩阵中角色特点选取（个性×情绪×行为×语言）时 |
 | `novel-setup/references/novel-references/outline-templates.md` | 大纲模板参考时 |
 | `novel-setup/references/novel-references/foreshadow-patterns.md` | 伏笔网络设计时 |
 
@@ -43,11 +45,11 @@ memory: project
 ### 大纲设计（8 部分）
 
 1. 核心设定（一句话卖点）
-2. 角色设计（主角 + 8-12 位女主矩阵 + 4 级反派体系）
-3. 主线剧情（4-6 卷架构，每卷核心冲突）
+2. 角色设计（主角 + 8-12 位女主矩阵 + 4 级反派体系）— 每位角色从 character-traits.md 选取独立的 个性类型×情绪状态×行为动作×语言风格 组合
+3. 主线剧情（4-6 卷架构，每卷核心冲突）— 每个弧从 plot-elements.md 选取 事件类型×事件风格×场景氛围 组合
 4. 感情线设计（7 种纠缠技法分配）
 5. 吸引元素（亲密/幽默/惊喜/日常 密度规划）
-6. 节奏控制（高潮/低谷交替、情绪曲线）
+6. 节奏控制（高潮/低谷交替、情绪曲线）— 通过事件风格交替控制节奏
 7. 支线设计（8+ 条支线与主线交织）
 8. 字数分配（150 万字总量规划）
 

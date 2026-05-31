@@ -25,11 +25,12 @@ memory: none
 | 参考文件 | 何时读取 |
 |---|---|
 | `novel-writing/SKILL.md` 模块D：反面教材 | 常见错误模式识别时 |
+| `novel-writing/references/character-traits.md` | 角色一致性检查时（验证角色行为是否符合已设定的个性×情绪×行为×语言组合） |
 | `novel-setup/references/novel-references/consistency-rules.md` | 一致性规则参考时 |
 
 ---
 
-## 检查能力（5 维度）
+## 检查能力（6 维度）
 
 ### 1. 角色一致性
 
@@ -39,8 +40,9 @@ memory: none
 - 能力水平是否合理（不能突然变强/变弱）
 - 外貌描述是否前后矛盾
 - 称谓/身份是否一致
+- **去耦合一致性**：角色在不同场景中是否展现了不同的情绪×行为×语言组合？（同一角色不应在所有场景中表现完全相同）
 
-检查方法：Grep 角色名，对比不同章节中的描述和行为。
+检查方法：Grep 角色名，对比不同章节中的描述和行为。参考 character-traits.md 验证角色行为组合是否合理。
 
 ### 2. 伏笔回收
 

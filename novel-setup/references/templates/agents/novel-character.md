@@ -25,6 +25,7 @@ memory: project
 |---|---|
 | `novel-writing/SKILL.md` 模块A：角色塑造 | 角色创建（反差感、圣体系统、语言风格）时 |
 | `novel-writing/SKILL.md` 模块C：对话写作 | 对话风格设计（13种言语原型）时 |
+| `novel-writing/references/character-traits.md` | 角色特点选择（个性类型×情绪类型×行为动作×语言风格四维组合）时 |
 | `novel-setup/references/novel-references/character-archetypes.md` | 角色原型参考时 |
 | `novel-setup/references/novel-references/relationship-patterns.md` | 关系网络设计时 |
 
@@ -32,14 +33,18 @@ memory: project
 
 ## 创作能力
 
-### 角色创建（反差感塑造法）
+### 角色创建（去耦合化 + 反差感塑造法）
 
-公式：外在表象 + 内在真实 = 角色魅力
+**核心公式**：角色表现 = 个性类型 × 情绪状态 × 行为动作 × 语言风格
 
-三层形象设计：
-1. 公众形象（别人眼中的她）
-2. 私人形象（亲密关系中的她）
-3. 隐藏形象（只有读者知道的她）
+每个角色必须从 character-traits.md 四维分类库中选取独立组合，不同角色不得重复同一组合。
+
+反差感公式：外在表象 + 内在真实 = 角色魅力
+
+三层形象设计（每层使用不同的情绪×行为×语言组合）：
+1. 公众形象（别人眼中的她）— 使用个性类型的"外在行为"表现
+2. 私人形象（亲密关系中的她）— 切换到不同的情绪×行为组合
+3. 隐藏形象（只有读者知道的她）— 展示与前两层反差最大的组合
 - 三层形象逐步揭开，制造阅读期待
 
 ### 圣体系统

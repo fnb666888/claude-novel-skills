@@ -44,6 +44,26 @@
 
 ## 协作规则
 
+### 去耦合化创作架构（核心设计）
+
+本项目以**去耦合化的角色特点×情节元素**为核心创作方法：
+
+**角色特点分类库**（`novel-writing/references/character-traits.md`）：
+- 4 维独立轴：个性类型(16种) × 情绪状态(16种) × 行为动作(7类40+) × 语言风格(18种)
+- 公式：`角色表现 = 个性类型 × 情绪状态 × 行为动作 × 语言风格`
+
+**情节元素分类库**（`novel-writing/references/plot-elements.md`）：
+- 3 维独立轴：事件类型(20种) × 事件风格(14种) × 场景氛围(13种)
+- 公式：`章节内容 = 事件类型 × 事件风格 × 场景氛围 × 角色特点`
+
+**使用原则**：
+- 同一角色在不同场景必须使用不同的情绪×行为×语言组合
+- 不同角色不得重复同一组合
+- 每章声明核心体验类型并极端化
+- 优化时通过更换元素组合突破瓶颈，而非简单"加料"
+
+**扩展库**：`novel-writing/extensions/` 存放 novel-learn 从分析小说中提取的新元素
+
 ### 三支柱协作
 - **学习 → 写作**：novel-learn 的市场调研和技法扩展服务于写作流程
 - **写作 → 管理**：每章完成后 novel-supervisor 自动更新世界观/进度/伏笔
@@ -62,12 +82,12 @@
 ```
 
 ### Agent 协作
-- `novel-architect`：世界观架构 / 大纲设计 / 伏笔规划
-- `novel-writer`：正文写作 + 情绪执行
-- `novel-character`：角色设计 / 对话风格 / 关系网络
-- `novel-checker`：一致性检查（只读）
-- `novel-supervisor`：**自动管理**（审查 + 追踪 + 反馈）
-- `novel-learner`：市场调研 / 小说分析 / 技法提取
+- `novel-architect`：世界观架构 / 大纲设计 / 伏笔规划（使用 plot-elements.md 选取情节元素组合）
+- `novel-writer`：正文写作 + 情绪执行（使用 character-traits.md + plot-elements.md 选取去耦合组合）
+- `novel-character`：角色设计 / 对话风格 / 关系网络（使用 character-traits.md 选取四维角色组合）
+- `novel-checker`：一致性检查（只读，含去耦合一致性维度）
+- `novel-supervisor`：**自动管理**（审查 + 追踪 + 反馈，含去耦合化建议）
+- `novel-learner`：市场调研 / 小说分析 / 技法提取（提取去耦合元素到 extensions/）
 
 ## 项目清单（manifest.md）
 

@@ -27,6 +27,8 @@ memory: project
 |---|---|
 | `novel-writing/SKILL.md` 模块C：正文写作 | 正文写作（亲密/幽默/日常/对话技法）时 |
 | `novel-writing/SKILL.md` 模块D：反面教材 | 规避常见错误时 |
+| `novel-writing/references/character-traits.md` | 角色表现组合（个性×情绪×行为×语言）选取时 |
+| `novel-writing/references/plot-elements.md` | 情节元素组合（事件类型×事件风格×场景氛围）选取时 |
 | `novel-deslop/references/anti-ai-writing.md` | 去AI味（6 Gate、三遍法）时 |
 | `novel-deslop/references/banned-words.md` | 禁用词替换（Gate A）时 |
 | `novel-setup/references/novel-references/scene-techniques.md` | 场景写法参考时 |
@@ -38,12 +40,16 @@ memory: project
 ### 正文写作
 
 1. **开篇承接**：从上一章结尾自然过渡（1-2 句）
-2. **场景展开**：每个场景将发生、感知、反应三维度织入同一段连续正文
+2. **去耦合化组合**：每个场景从分类库选取组合：
+   - 角色表现：从 character-traits.md 选取 个性类型×情绪状态×行为动作×语言风格
+   - 情节元素：从 plot-elements.md 选取 事件类型×事件风格×场景氛围
+   - 同一角色在不同场景应使用不同组合（如：场景1=高冷型×害羞×咬唇×惜字如金，场景2=高冷型×愤怒×握拳×毒舌）
+3. **场景展开**：每个场景将发生、感知、反应三维度织入同一段连续正文
    - 发生：事件叙事（1-2 句，含具体细节）
    - 感知：感官细节（至少 1 个不同感官）
    - 反应：身体动作（可含一句极短心理定格）
    - 三维度织在同一段里，不按维度分段
-3. **收尾钩子**：悬念或情绪定格（1-2 句）
+4. **收尾钩子**：悬念或情绪定格（1-2 句）
 
 ### 情绪弧线执行
 

@@ -24,6 +24,8 @@ memory: none
 | 参考文件 | 何时读取 |
 |---|---|
 | `novel-writing/SKILL.md` 模块A-D | 分析技法时作为参照框架 |
+| `novel-writing/references/character-traits.md` | 提取去耦合角色特点时（个性类型×情绪类型×行为动作×语言风格） |
+| `novel-writing/references/plot-elements.md` | 提取去耦合情节元素时（事件类型×事件风格×场景氛围） |
 | `novel-learn/references/genre-trends.md` | 市场调研时 |
 | `novel-learn/references/reader-profiling.md` | 读者画像分析时 |
 | `novel-learn/references/structure-mapping.md` | 逆向导入时 |
@@ -38,10 +40,13 @@ memory: none
 - 分析题材热度、设定趋势、书名词频、开篇卖点
 - 输出选题决策报告到 `素材/市场调研.md`
 
-### 2. 小说分析（12维度）
+### 2. 小说分析（12维度，含去耦合提取）
 
 - 分层采样阅读（15-20个片段覆盖全书）
 - 12维度分析：角色特征、塑造技法、情节构造、钩子技法、节奏、亲密描写、关系动态、对话、幽默、叙事工具、开头结尾、可迁移技法
+- **去耦合元素提取**（核心）：
+  - 角色特点提取：从分析片段中提取新的个性类型、情绪类型、行为动作、语言风格 → 参考 character-traits.md 格式输出到 extensions/characters/
+  - 情节元素提取：从分析片段中提取新的事件类型、事件风格、场景氛围 → 参考 plot-elements.md 格式输出到 extensions/plot/
 - 输出新技法到 `novel-writing/extensions/{characters,plot,prose}/`
 
 ### 3. 逆向导入
