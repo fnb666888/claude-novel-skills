@@ -35,6 +35,30 @@
         ]
       }
     ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-content-review.sh",
+            "timeout": 15,
+            "if": "Write(path=*/正文/*) || Write(path=*/设定/*)"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-content-review.sh",
+            "timeout": 15,
+            "if": "Edit(path=*/正文/*) || Edit(path=*/设定/*)"
+          }
+        ]
+      }
+    ],
     "PreCompact": [
       {
         "hooks": [

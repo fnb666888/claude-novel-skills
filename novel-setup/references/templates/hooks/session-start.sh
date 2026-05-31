@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # session-start.sh — SessionStart hook
-# 显示小说项目状态、写作进度
+# 显示小说项目状态、写作进度、伏笔预警
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "${SCRIPT_DIR}/lib/common.sh"
@@ -17,6 +17,7 @@ fi
 VERSION="$(sentinel_setup_version)"
 AGENTS_VER="$(sentinel_agents_version)"
 echo "📚 小说创作工具集已部署 (v${VERSION}, agents v${AGENTS_VER})"
+echo "🤖 自动管理已启用（novel-supervisor）"
 
 # 检查是否有小说项目
 NOVELS=($(discover_all_novels))
@@ -25,7 +26,7 @@ if [ ${#NOVELS[@]} -eq 0 ]; then
   exit 0
 fi
 
-# 显示每个小说的进度 + 缺口检测
+# 显示每个小说的进度 + 预警
 for novel_dir in "${NOVELS[@]}"; do
   novel_name="$(basename "$novel_dir")"
   echo ""
@@ -64,10 +65,38 @@ for novel_dir in "${NOVELS[@]}"; do
   foreshadow_file="${novel_dir}/追踪/伏笔.md"
   if [ -f "$foreshadow_file" ]; then
     unresolved=$(grep -c "状态.*未回收" "$foreshadow_file" 2>/dev/null || echo "0")
+    overdue=$(grep -c "状态.*超期" "$foreshadow_file" 2>/dev/null || echo "0")
     if [ "$unresolved" -gt 20 ]; then
       echo "   ⚠️  ${unresolved} 个未回收伏笔"
     fi
+    if [ "$overdue" -gt 0 ]; then
+      echo "   🔴 ${overdue} 个超期伏笔（需优先处理）"
+    fi
+  fi
+
+  # 写作反馈状态
+  feedback_file="${novel_dir}/追踪/写作反馈.md"
+  if [ -f "$feedback_file" ]; then
+    # 检查反馈文件的最后更新时间
+    feedback_age=$(( $(date +%s) - $(stat -c %Y "$feedback_file" 2>/dev/null || stat -f %m "$feedback_file" 2>/dev/null || echo "0") ))
+    feedback_days=$(( feedback_age / 86400 ))
+    if [ "$feedback_days" -gt 3 ]; then
+      echo "   ⚠️  写作反馈 ${feedback_days} 天未更新"
+    fi
+  fi
+
+  # 进度预警
+  if [ -f "$progress_file" ]; then
+    # 检查是否有连续低分章节
+    low_score_count=$(grep -c "评分.*[0-7]\." "$progress_file" 2>/dev/null || echo "0")
+    if [ "$low_score_count" -gt 3 ]; then
+      echo "   ⚠️  有 ${low_score_count} 个低分章节需优化"
+    fi
   fi
 done
+
+echo ""
+echo "💡 自动管理：写作产出将自动触发一致性检查和追踪更新"
+echo "   手动管理：/novel-setup 查看可用管理命令"
 
 exit 0

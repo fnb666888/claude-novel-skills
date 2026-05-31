@@ -16,16 +16,11 @@
 | `/novel-quality`、`/评分` | novel-quality | 评分与优化（三量表 + 靶向优化） |
 | `/novel-deslop`、`/去AI味` | novel-deslop | 去除 AI 写作痕迹（6 Gate） |
 
-### 📁 管理支柱
-| 命令 | Skill | 说明 |
-|------|-------|------|
-| `/novel-manage`、`/管理` | novel-manage | 项目管理：世界观 / 一致性 / 伏笔 / 进度 / 备份 |
-
 ### 🔧 共享基础
 | 命令 | Skill | 说明 |
 |------|-------|------|
 | `/novel-writing`、`/写作技法` | novel-writing | 核心技法库（角色/情节/正文） |
-| `/novel-setup`、`/准备写小说` | novel-setup | 环境部署（hooks/rules/agents） |
+| `/novel-setup`、`/准备写小说` | novel-setup | **基础设施部署 + 项目自动管理**（世界观/一致性/伏笔/进度/备份） |
 | `/novel`、`/小说` | novel | 工具箱路由 · 模糊意图自动分发 |
 
 ## 文件结构
@@ -34,15 +29,16 @@
 {小说名}/
 ├── 灵感/           — 灵感卡片（novel-inspiration 输出）
 ├── 大纲/           — 全书大纲 + 章节大纲（novel-outline 输出）
-├── 设定/           — 世界观、角色设定（novel-manage 维护）
+├── 设定/           — 世界观、角色设定（自动管理 + 手动管理）
 │   ├── 世界观.md
 │   ├── 角色/
 │   └── 势力/
 ├── 正文/           — 正文章节（novel-chapter 输出）
-├── 追踪/           — 进度、伏笔、时间线（novel-manage 维护）
+├── 追踪/           — 进度、伏笔、时间线（novel-supervisor 自动维护）
 │   ├── 进度.md
 │   ├── 伏笔.md
-│   └── 时间线.md
+│   ├── 时间线.md
+│   └── 写作反馈.md  — 管理→写作的核心桥梁
 └── 素材/           — 市场调研等（novel-learn 输出）
 ```
 
@@ -50,14 +46,27 @@
 
 ### 三支柱协作
 - **学习 → 写作**：novel-learn 的市场调研和技法扩展服务于写作流程
-- **写作 → 管理**：每章完成后 novel-chapter 自动更新 novel-manage 的世界观/进度/伏笔
-- **管理 → 写作**：novel-manage 维护的世界观和设定是所有创作 skill 的唯一真相源
+- **写作 → 管理**：每章完成后 novel-supervisor 自动更新世界观/进度/伏笔
+- **管理 → 写作**：novel-supervisor 维护的写作反馈是所有创作 skill 的约束源
+
+### 自动管理
+- 系统通过 PostToolUse hook + novel-supervisor agent **自动审查**所有写作产出
+- 每当 `正文/` 或 `设定/` 文件被修改，自动触发一致性检查 + 追踪更新 + 反馈生成
+- **无需手动触发**，系统自动执行
+
+### 反馈循环
+```
+正文生成 → 自动审查 → 写作反馈 → 下一章读取反馈 → 正文生成
+    ↑                                              ↓
+    └──────────────────────────────────────────────┘
+```
 
 ### Agent 协作
 - `novel-architect`：世界观架构 / 大纲设计 / 伏笔规划
 - `novel-writer`：正文写作 + 情绪执行
 - `novel-character`：角色设计 / 对话风格 / 关系网络
 - `novel-checker`：一致性检查（只读）
+- `novel-supervisor`：**自动管理**（审查 + 追踪 + 反馈）
 - `novel-learner`：市场调研 / 小说分析 / 技法提取
 
 ## 项目清单（manifest.md）
@@ -80,10 +89,11 @@
 ## 关键文件路径
 - 灵感文件：灵感/inspiration_*.md
 - 大纲文件：大纲/outline_*.md
-- 世界观文件：设定/world_*.md
-- 角色文件：设定/characters/*.md
+- 世界观文件：设定/世界观.md
+- 角色文件：设定/角色/*.md
 - 进度文件：追踪/进度.md
 - 伏笔文件：追踪/伏笔.md
+- 写作反馈：追踪/写作反馈.md
 
 ## 写作进度
 - 章节大纲：已生成 X/Y 章
