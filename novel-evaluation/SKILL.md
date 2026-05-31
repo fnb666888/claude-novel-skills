@@ -12,7 +12,7 @@ description: "小说读者体验评价系统——评估章节是否完成叙事
 **重要：每次执行本skill时，必须先读取novel-writing技能的内容作为评价标准参照。**
 
 ```
-步骤1：读取 C:/Users/fnb12/.claude/skills/novel-writing/SKILL.md
+步骤1：读取 novel-writing/SKILL.md（按角色/情节/写作选择对应模块：references/module-a-character.md、module-b-plot.md、module-c-prose.md）
 步骤2：判定章节类型，确定评价维度和权重
 步骤3：按照下方三层层级进行评价
 ```

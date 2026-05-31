@@ -17,24 +17,26 @@ Claude Novel Skills 是一组为 [Claude Code](https://claude.ai/code) 设计的
 
 ### 技能一览
 
-| 技能 | 命令 | 说明 |
-|------|------|------|
-| 灵感迭代 | `/novel-inspiration` | 头脑风暴 + 网搜 + 评分优化，生成 9.0+ 级创意 |
-| 大纲生成 | `/novel-outline` | 8 段式完整大纲，迭代优化至 9.0+ |
-| 章节大纲 | `/novel-chapter-outline` | 每 10 章为一批，含节奏评分与优化 |
-| 正文写作 | `/novel-chapter` | 6 阶段流水线：构思→调研→写作→评估→优化→分析 |
-| 批量创作 | `/novel-batch` | 从大纲自动全书创作，支持断点续写 |
-| 写作技法库 | `/novel-writing` | 核心技法：A-人物塑造 / B-情节构建 / C-文字写作 |
-| 评估系统 | `/novel-evaluation` | 三层量化评分：目标达成 40% + 阅读体验 40% + 技法执行 20% |
-| 吸引力优化 | `/novel-optimization` | 针对亲密度、幽默感、惊喜感等维度优化 |
-| 去 AI 味 | `/novel-deslop` | 6 门扫描 + 3 遍修复，消除 AI 写作痕迹 |
-| 一致性检查 | `/novel-consistency` | 5 维连续性检查：人物/伏笔/时间线/关系/世界观 |
-| 世界观管理 | `/novel-worldbuilding` | 8 部分标准世界设定文档，统一管理 |
-| 写作技法分析 | `/novel-analysis` | 12 维度深度分析已有作品 |
-| 深度学习 | `/novel-learn` | 阅读完整小说，12 维分析后直接融入技法库 |
-| 逆向导入 | `/novel-import` | 从已有小说文本反向构建项目目录结构 |
-| 市场调研 | `/novel-scan` | 爬取主流网文平台榜单数据，输出选题决策报告 |
-| 环境部署 | `/novel-setup` | 一键部署 hooks、rules、agents 到小说项目 |
+| 技能 | 类型 | 命令 | 说明 |
+|------|------|------|------|
+| 灵感迭代 | 🎯 | `/novel-inspiration` | 头脑风暴 + 网搜 + 评分优化，生成 9.0+ 级创意 |
+| 大纲生成 | 🎯 | `/novel-outline` | 8 段式完整大纲，迭代优化至 9.0+ |
+| 章节大纲 | 🎯 | `/novel-chapter-outline` | 每 10 章为一批，含节奏评分与优化 |
+| 正文写作 | 🎯 | `/novel-chapter` | 6 阶段流水线：构思→调研→写作→评估→优化→分析 |
+| 批量创作 | 🎯 | `/novel-batch` | 从大纲自动全书创作，支持断点续写 |
+| 写作技法库 | 📚 | `/novel-writing` | 核心技法：A-人物塑造 / B-情节构建 / C-文字写作 / D-反面教材 |
+| 世界观管理 | 📚 | `/novel-worldbuilding` | 8 部分标准世界设定文档，统一管理 |
+| 评估系统 | 🔧 | `/novel-evaluation` | 三层量化评分：目标达成 40% + 阅读体验 40% + 技法执行 20% |
+| 吸引力优化 | 🔧 | `/novel-optimization` | 针对亲密度、幽默感、惊喜感等维度优化 |
+| 去 AI 味 | 🔧 | `/novel-deslop` | 6 门扫描 + 3 遍修复，消除 AI 写作痕迹 |
+| 一致性检查 | 🔧 | `/novel-consistency` | 5 维连续性检查：人物/伏笔/时间线/关系/世界观 |
+| 写作技法分析 | 🎯 | `/novel-analysis` | 12 维度深度分析已有作品 |
+| 深度学习 | 🎯 | `/novel-learn` | 阅读完整小说，12 维分析后输出扩展技法到 extensions/ |
+| 逆向导入 | 🎯 | `/novel-import` | 从已有小说文本反向构建项目目录结构 |
+| 市场调研 | 🎯 | `/novel-scan` | 爬取主流网文平台榜单数据，输出选题决策报告 |
+| 环境部署 | 🏗️ | `/novel-setup` | 一键部署 hooks、rules、agents 到小说项目 |
+
+> **类型说明**：🎯 用户技能（用户直接调用）| 📚 技法库（知识库，也可独立使用）| 🔧 工具技能（主要被流水线内部调用）| 🏗️ 基础设施（项目部署配置）
 
 ### 快速开始
 
@@ -168,7 +170,7 @@ Claude Novel Skills is a comprehensive set of [Claude Code](https://claude.ai/co
 | Consistency | `/novel-consistency` | 5-dimension continuity: character/foreshadowing/timeline/relationship/world |
 | Worldbuilding | `/novel-worldbuilding` | 8-section standard world-setting document |
 | Analysis | `/novel-analysis` | 12-dimension deep analysis of existing novels |
-| Learn | `/novel-learn` | Read full novels, analyze across 12 dimensions, integrate into technique library |
+| Learn | `/novel-learn` | Read full novels, analyze across 12 dimensions, output extensions to technique library |
 | Import | `/novel-import` | Reverse-engineer existing novel text into standard project structure |
 | Market Scan | `/novel-scan` | Scrape ranking data from Chinese web novel platforms |
 | Setup | `/novel-setup` | One-click deployment of hooks, rules, agents to novel project |

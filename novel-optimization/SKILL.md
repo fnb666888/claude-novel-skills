@@ -12,7 +12,7 @@ description: "小说吸引力优化系统——针对灵感、大纲、正文的
 **重要：每次执行本skill时，必须先读取novel-writing技能的内容作为优化工具箱。**
 
 ```
-步骤1：读取 C:/Users/fnb12/.claude/skills/novel-writing/SKILL.md
+步骤1：读取 novel-writing/SKILL.md（按优化目标选择对应模块：references/module-a-character.md、module-b-plot.md、module-c-prose.md）
 步骤2：根据优化阶段，从novel-writing中提取对应的优化技法
 步骤3：按照下方优化策略进行定向优化
 ```

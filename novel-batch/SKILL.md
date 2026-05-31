@@ -50,31 +50,25 @@ description: "小说批量创作工具——从整体大纲自动生成全书的
 ### 第二阶段：批量生成章节大纲
 
 ```
-1. 读取整体大纲
-2. 读取世界观设定
-3. 按批次生成章节大纲（每批10章）
-4. 每批生成后：
-   - 运行novel-evaluation评分
-   - 如果<8.0分，自动优化一轮
-   - 更新世界观文档
-5. 保存进度文件
-6. 输出进度报告
+1. 读取整体大纲和世界观设定
+2. 按批次调用 /novel-chapter-outline 生成章节大纲（每批10章）
+   - /novel-chapter-outline 内置评估+优化循环，batch 不重复处理
+3. 每批完成后更新世界观文档
+4. 保存进度文件
+5. 输出进度报告
 ```
 
 ### 第三阶段：批量生成正文
 
 ```
-1. 读取章节大纲
-2. 读取世界观设定
-3. 按批次生成正文（每批10章）
-4. 每章生成后：
-   - 运行novel-evaluation评分
-   - 如果<8.5分，自动优化一轮
-   - 运行novel-deslop去AI味（轻度以上自动修复）
+1. 读取章节大纲和世界观设定
+2. 按批次循环调用 /novel-chapter 生成正文（每批10章）
+   - /novel-chapter 内置6阶段流水线（构思→调研→写作→评估→优化→去AI味），batch 不重复处理
+3. 每章完成后：
    - 更新世界观文档（角色状态、事件记录）
-   - 检查连续性
-5. 保存进度文件
-6. 输出进度报告
+   - 调用 /novel-consistency 检查连续性（每批次检查一次）
+4. 保存进度文件
+5. 输出进度报告
 ```
 
 ---
@@ -229,12 +223,12 @@ description: "小说批量创作工具——从整体大纲自动生成全书的
 
 | 工具 | 协作方式 |
 |------|----------|
+| novel-chapter-outline | 批量调用生成章节大纲（内置评估+优化循环） |
+| novel-chapter | 批量调用生成正文（内置6阶段流水线：构思→调研→写作→评估→优化→去AI味） |
+| novel-consistency | 每批次完成后检查连续性 |
 | novel-worldbuilding | 每章生成后更新世界观设定 |
-| novel-chapter-outline | 批量调用生成章节大纲 |
-| novel-chapter | 批量调用生成正文 |
-| novel-evaluation | 每章生成后评分 |
-| novel-optimization | 评分不达标时自动优化 |
-| novel-consistency | 每章生成后检查连续性 |
+
+> **说明**：评估（novel-evaluation）、优化（novel-optimization）、去AI味（novel-deslop）由 novel-chapter 内部调用，batch 不直接调用这些工具。
 
 ---
 
