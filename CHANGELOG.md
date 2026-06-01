@@ -4,6 +4,52 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [5.0.0] - 2026-06-01
+
+### 重构：单一入口 + 工具化架构
+
+将 8 个独立 skill 合并为单一入口 `/novel`，其他内容重构为工具集和规则集。
+
+#### 新增
+- **SKILL.md** - 唯一skill入口，整合学习、写作、设置三大模式
+- **tools/** - 工具集目录
+  - `tools/techniques/` - 写作技法（模块A/B/C/D）
+  - `tools/decoupled/` - 去耦合分类库（角色特点、情节元素）
+  - `tools/extensions/` - 学习扩展目录
+  - `tools/references/` - 参考资料
+- **rules/** - 规则集目录
+  - `rules/output-rules.md` - 输出规则
+  - `rules/quality-rules.md` - 评分优化规则
+  - `rules/deslop-rules.md` - 去AI味规则
+  - `rules/check-rules.md` - 检查系统规则
+  - `rules/banned-words.md` - 禁用词表
+  - `rules/anti-ai-writing.md` - 反AI写作参考
+
+#### 变更
+- **架构** - 从8个独立skill重构为单一入口+工具化架构
+- **入口** - 统一为 `/novel` 命令，内部路由到学习/写作/设置模式
+- **学习模式** - 整合原 novel-learn 的市场调研和小说分析功能
+- **写作模式** - 整合原 novel-inspiration、novel-outline、novel-chapter
+- **设置模式** - 整合原 novel-setup 的部署和管理功能
+
+#### 删除
+- **novel-learn/** - 功能合并到学习模式
+- **novel-writing/** - 内容移动到 tools/techniques/ 和 tools/decoupled/
+- **novel-inspiration/** - 功能合并到写作-灵感子模式
+- **novel-outline/** - 功能合并到写作-大纲子模式
+- **novel-chapter/** - 功能合并到写作-正文子模式
+- **novel-quality/** - 规则提取到 rules/quality-rules.md
+- **novel-deslop/** - 规则提取到 rules/deslop-rules.md
+- **novel-setup/** - 功能合并到设置模式，模板移动到 templates/
+
+#### 架构优势
+- **简化入口**：用户只需记住 `/novel` 一个命令
+- **清晰分层**：工具、规则、模板各司其职
+- **完美闭环**：学习→工具→写作→规则→输出
+- **易于扩展**：新功能只需添加到对应目录
+
+---
+
 ## [2.1.0] - 2026-05-31
 
 ### 重构：自动管理系统
