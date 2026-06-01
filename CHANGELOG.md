@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [6.0.0] - 2026-06-01
+
+### 精简：删除市场调研、部署模板和设置模式
+
+根据用户反馈，删除不需要的功能，精简为学习+写作两大模式。
+
+#### 删除
+- **市场调研** - 删除学习模式中的市场调研功能
+- **scripts/** - 删除爬虫脚本目录
+- **templates/** - 删除部署模板目录（hooks、agents、rules）
+- **tools/references/** - 删除参考资料目录
+- **设置模式** - 删除整个设置模式（部署、世界观、检查、伏笔、进度等）
+
+#### 变更
+- **SKILL.md** - 从三大模式精简为两大模式（学习+写作）
+- **README.md** - 更新文档，移除市场调研和设置模式相关内容
+
+#### 保留
+- **学习模式** - 小说分析功能（12维度分析）
+- **写作模式** - 灵感、大纲、正文、全流程
+- **工具集** - techniques/、decoupled/、extensions/
+- **规则集** - output-rules.md、quality-rules.md、deslop-rules.md、check-rules.md
+
+---
+
 ## [5.0.0] - 2026-06-01
 
 ### 重构：单一入口 + 工具化架构
