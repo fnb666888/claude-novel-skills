@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [8.7.0] - 2026-06-02
+
+### 优化：创作准备逐个询问 + 自由填写
+
+#### 改进内容
+
+**1. 逐个询问**
+- 从一次性展示所有问题改为7步逐个询问
+- 等用户回答后再问下一个问题
+- 更清晰的交互流程
+
+**2. 每个问题都有"其他"选项**
+- 所有预设选项都提供"其他：自由描述你的想法"
+- 用户可以跳出预设，自由发挥创意
+
+**3. 七步流程**
+1. 创作方向（题材类型）
+2. 创作风格（根据题材分类）
+3. 创作篇幅
+4. 每章字数
+5. 核心体验
+6. 参考文件
+7. 补充信息（可跳过）
+
+#### 修改的文件
+- `SKILL.md` — 创作准备改为7步逐个询问流程
+
+---
+
 ## [8.6.0] - 2026-06-02
 
 ### 增强：创作风格分类 + 参考文件选项
