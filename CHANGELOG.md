@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [8.3.0] - 2026-06-02
+
+### 变更：CLAUDE.md 改为静态指引文件
+
+将 CLAUDE.md 从动态生成的项目记忆文件改为固定的静态指引文件。
+
+#### 设计变更
+- **CLAUDE.md** — 从"项目进度记录"改为"skill 使用指引"
+- **会话恢复** — 从"读取 CLAUDE.md 中的进度"改为"扫描项目目录判断进度"
+- **维护方式** — 从"每章更新 CLAUDE.md"改为"CLAUDE.md 固定不变，进度由目录结构体现"
+
+#### 新的工作流程
+1. 灵感阶段完成后，将固定的 CLAUDE.md 复制到项目根目录
+2. 新会话时，CLAUDE.md 自动加载，教 Claude 如何使用 `/novel` skill
+3. Claude 扫描项目目录（灵感/大纲/正文/追踪）判断当前进度
+4. 从断点继续创作
+
+#### 修改的文件
+- `CLAUDE.md` — 新建静态指引文件
+- `SKILL.md` — v8.2→v8.3，更新 CLAUDE.md 相关描述
+- `rules/output-rules.md` — 移除 CLAUDE.md 模板，改为静态文件说明
+- `rules/check-rules.md` — 移除 CLAUDE.md 更新步骤
+
+---
+
 ## [6.0.0] - 2026-06-01
 
 ### 精简：删除市场调研、部署模板和设置模式
