@@ -79,9 +79,11 @@
 
 ## 工具和规则位置
 
-所有工具和规则由 `/novel` skill 自动加载，无需手动读取：
+所有工具和规则由 `/novel` skill 自动加载，位于skill安装目录（`~/.claude/skills/claude-novel-skills-main/`），无需手动读取：
 
-- **技法库**：`tools/techniques/`（角色塑造、情节构造、正文写作、反面教材）
-- **去耦合组件**：`tools/decoupled/`（角色特点分类、情节元素分类）
-- **规则集**：`rules/`（输出规则、评分规则、去AI味规则、检查规则）
-- **参考资料**：`references/`（优秀小说，用于对比优化）
+- **技法库**：`[skill]/tools/techniques/`（角色塑造、情节构造、正文写作、反面教材）
+- **去耦合组件**：`[skill]/tools/decoupled/`（角色特点分类、情节元素分类）
+- **规则集**：`[skill]/rules/`（输出规则、评分规则、去AI味规则、检查规则）
+- **参考资料**：`[skill]/references/`（优秀小说，用于对比优化）
+
+> `[skill]/` 前缀表示路径相对于skill安装目录，而非项目目录。

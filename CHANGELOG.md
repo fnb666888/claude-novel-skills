@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [9.6.0] - 2026-06-02
+
+### 修复：路径引用分离（Skill目录 vs 项目目录）
+
+#### 问题
+- SKILL.md 中的 `tools/`、`rules/`、`references/` 路径被解析为项目根目录
+- 使用skill时会在用户项目目录下创建 `tools/` 等文件夹
+- 应该从skill自带的安装目录读取这些文件
+
+#### 解决方案
+
+**两类路径，用 `[skill]/` 前缀区分**：
+
+| 类别 | 前缀 | 位置 | 内容 |
+|------|------|------|------|
+| **Skill目录** | `[skill]/` | skill自身安装目录 | 工具集、规则集、参考资料 |
+| **项目目录** | 无前缀 | 用户小说项目根目录 | 灵感、设定、大纲、正文、追踪 |
+
+**修改内容**：
+- 在SKILL.md开头新增"路径约定"章节，定义两类目录和解析规则
+- 所有 `tools/`、`rules/`、`references/` 路径统一加 `[skill]/` 前缀
+- 明确skill安装目录为 `~/.claude/skills/claude-novel-skills-main/`
+- 同步更新CLAUDE.md中的路径引用
+
+---
+
 ## [9.5.0] - 2026-06-02
 
 ### 新增：多Agent并行创作
