@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [8.4.0] - 2026-06-02
+
+### 新增：创作准备流程 + 子Agent会话恢复
+
+#### 新增功能
+- **创作准备** — 首次创作时询问用户：创作方向、风格、篇幅、每章字数、核心体验
+- **子Agent会话恢复** — CLAUDE.md 会话恢复流程现在也适用于子Agent
+
+#### 创作准备选项
+- 创作方向：都市言情/古代言情/玄幻修仙/悬疑推理/科幻末世/校园青春/历史架空/其他
+- 创作风格：轻松幽默/甜宠撒糖/虐心催泪/热血燃向/暗黑悬疑/治愈温馨/其他
+- 创作篇幅：短篇(1-5万)/中篇(5-20万)/长篇(20-50万)/超长篇(50万+)
+- 每章字数：2000/3000/4000/5000+
+- 核心体验：从8种体验类型中选择1-2个
+
+#### 修改的文件
+- `CLAUDE.md` — 添加子Agent适用说明
+- `SKILL.md` — v8.3→v8.4，新增"创作准备"章节，更新全流程
+
+---
+
 ## [8.3.0] - 2026-06-02
 
 ### 变更：CLAUDE.md 改为静态指引文件
