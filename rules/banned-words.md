@@ -1,12 +1,6 @@
 # AI味禁用词与句式表
 
-<!--
-version: 1.0.0
-sync-source: skills/novel-deslop/references/banned-words.md
-origin: 从 story-deslop/references/banned-words.md 同步
-本文件在 novel 系列中保持一致：novel-deslop / novel-writer agent
-修改后请同步所有副本。
--->
+> 本文件是禁用词的唯一数据源。`deslop-rules.md` 的 Gate A 引用此文件，不再重复维护。
 
 ## 最毒禁用句式（出现即修，最高优先级）
 
