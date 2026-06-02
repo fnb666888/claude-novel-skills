@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [9.0.0] - 2026-06-02
+
+### 全面修复：创作流程完整性
+
+#### 修复问题
+
+**问题1：创作设定文件未被读取**
+- 所有子模式阶段一添加读取 `设定/创作设定_[小说名].md`
+
+**问题2：参考小说信息未被读取**
+- 所有优化阶段添加读取 `设定/参考小说_[小说名].md`
+
+**问题3：大纲阶段未读取追踪文件**
+- 大纲阶段添加读取 `追踪/情节追踪.md` 和 `追踪/角色追踪.md`
+- Phase 2 添加读取 Phase 1 的全书大纲
+
+**问题4：会话恢复未读取追踪文件**
+- 会话恢复协议添加读取情节追踪、角色追踪、创作设定、参考小说信息
+
+**问题5：闭环工作流描述不完整**
+- 更新闭环工作流，包含完整的文件读取和追踪文件更新流程
+
+**问题6：学习模式输出的扩展内容未被写作模式读取**
+- 所有子模式添加读取 `tools/extensions/techniques/` 和 `tools/extensions/decoupled/`
+
+#### 修改的文件
+- `SKILL.md` — 全面更新工具读取、优化方式、会话恢复、闭环工作流
+
+---
+
 ## [8.9.0] - 2026-06-02
 
 ### 修复：正文创作流程追踪文件读取和更新
